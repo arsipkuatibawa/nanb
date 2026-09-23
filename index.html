@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KUASIP - Portal Arsiparis KUA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- Header Navbar -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="brand" onclick="showPage('landing-page')">
+        <img id="app-logo" src="https://lh3.googleusercontent.com/d/11z9mckC4eI98BgkHzZJFFbWECL5rk7-D" alt="Logo KUA">
+        <div class="brand-text">
+          <span id="app-name-display">KUA TIBAWA</span>
+          <strong>KUASIP (KUA Arsip)</strong>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><button class="nav-btn active" id="nav-beranda" onclick="showPage('landing-page')"><i class="fa-solid fa-house"></i> Beranda</button></li>
+        <li><button class="nav-btn" id="nav-pencarian" onclick="showPage('search-page')"><i class="fa-solid fa-magnifying-glass"></i> Cari Data</button></li>
+        <li><button class="nav-btn" id="nav-admin" onclick="showPage('login-page')"><i class="fa-solid fa-user-lock"></i> Admin</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content Areas -->
+  <main>
+
+    <!-- 1. Landing Page -->
+    <section id="landing-page" class="page active">
+      <div class="hero-card">
+        <img id="hero-banner-img" class="hero-banner" src="https://lh3.googleusercontent.com/d/1QUQAMrw6dFAHNlmLPoL9Zsbv6PkQiWG-" alt="Gedung KUA">
+        <div class="hero-content">
+          <div class="logo-large">
+            <i class="fa-solid fa-folder-open"></i>
+            <h1>KUASIP</h1>
+          </div>
+          <p style="opacity: 0.8; max-width: 600px; margin: 0 auto;">
+            Akses data arsip pernikahan dengan mudah, cepat, dan aman melalui pencarian validasi data KUA.
+          </p>
+        </div>
+        <div class="slogan-ribbon">
+          <i class="fa-solid fa-heart"></i> Melayani dengan Hati
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card" onclick="showPage('search-page')" style="cursor: pointer;">
+          <i class="fa-solid fa-qrcode"></i>
+          <h3>Scan QR Code</h3>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Akses langsung data melalui pemindaian QR Code resmi.</p>
+        </div>
+        <div class="feature-card" onclick="showPage('search-page')" style="cursor: pointer;">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <h3>Cari Data Arsip</h3>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Cari arsip nikah berdasarkan kombinasi Desa & Nama Catin.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h3>Aman & Terpercaya</h3>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Data publik terproteksi tanpa menampilkan informasi sensitif.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-handshake"></i>
+          <h3>Pelayanan Lebih Baik</h3>
+          <p style="font-size: 0.85rem; margin-top: 5px;">Inovasi digitalisasi kearsipan KUA yang transparan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Halaman Pencarian -->
+    <section id="search-page" class="page">
+      <div class="card">
+        <h2 class="card-title"><i class="fa-solid fa-magnifying-glass"></i> Cari Data Pernikahan</h2>
+        <p class="card-subtitle">Silakan pilih desa dan masukkan nama calon pengantin untuk melihat informasi arsip pernikahan.</p>
+
+        <form onsubmit="handleSearch(event)">
+          <div class="form-group">
+            <label for="search-desa">Desa / Kelurahan</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-location-dot"></i>
+              <select id="search-desa" class="form-control" style="padding-left: 42px;">
+                <option value="Semua">Semua Desa</option>
+                <option value="Balahu">Balahu</option>
+                <option value="Botumoputi">Botumoputi</option>
+                <option value="Buhu">Buhu</option>
+                <option value="Datahu">Datahu</option>
+                <option value="Dunggala">Dunggala</option>
+                <option value="Ilomata">Ilomata</option>
+                <option value="Iloponu">Iloponu</option>
+                <option value="Isimu Raya">Isimu Raya</option>
+                <option value="Isimu Selatan">Isimu Selatan</option>
+                <option value="Isimu Utara">Isimu Utara</option>
+                <option value="Labanu">Labanu</option>
+                <option value="Molowahu">Molowahu</option>
+                <option value="Motilango">Motilango</option>
+                <option value="Reksonegoro">Reksonegoro</option>
+                <option value="Tolotio">Tolotio</option>
+                <option value="Ulobua">Ulobua</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="search-nama">Nama Calon Pengantin</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" id="search-nama" class="form-control" placeholder="Masukkan nama lengkap..." required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn"><i class="fa-solid fa-magnifying-glass"></i> Cari Data</button>
+        </form>
+
+        <div class="info-box">
+          <i class="fa-solid fa-circle-info" style="font-size: 1.2rem;"></i>
+          <div>
+            <strong>Informasi Penting</strong><br>
+            Untuk menjaga keamanan data, pencarian menggunakan kombinasi Desa dan Nama. Informasi yang ditampilkan terbatas dan NIK dilindungi.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Hasil Pencarian -->
+    <section id="result-page" class="page">
+      <div class="card" style="max-width: 700px;">
+        <button class="btn btn-secondary" onclick="showPage('search-page')" style="width: auto; padding: 6px 14px; margin-bottom: 15px; font-size: 0.85rem;">
+          <i class="fa-solid fa-arrow-left"></i> Kembali
+        </button>
+
+        <div class="alert-success">
+          <i class="fa-solid fa-circle-check" style="font-size: 1.5rem;"></i>
+          <div>
+            <strong>Data Ditemukan</strong><br>
+            <span style="font-size: 0.85rem;">Berikut adalah informasi pernikahan yang sesuai dengan pencarian Anda.</span>
+          </div>
+        </div>
+
+        <h3 style="margin-bottom: 15px; color: var(--primary-color);">Informasi Pernikahan</h3>
+
+        <table class="data-table">
+          <tr>
+            <td>Nama Calon Suami</td>
+            <td id="res-suami">Ahmad Syafii</td>
+          </tr>
+          <tr>
+            <td>Nama Calon Istri</td>
+            <td id="res-istri">Siti Nurhaliza</td>
+          </tr>
+          <tr>
+            <td>Desa</td>
+            <td id="res-desa">Isimu Raya</td>
+          </tr>
+          <tr>
+            <td>Tempat Akad</td>
+            <td id="res-tempat-akad">KUA Tibawa</td>
+          </tr>
+          <tr>
+            <td>Alamat Akad</td>
+            <td id="res-alamat">Jl. KUA Tibawa, Kabupaten Gorontalo</td>
+          </tr>
+          <tr>
+            <td>Kecamatan</td>
+            <td id="res-kecamatan">Tibawa</td>
+          </tr>
+          <tr>
+            <td>Tanggal Akad Nikah</td>
+            <td id="res-tanggal">12 Januari 2023</td>
+          </tr>
+          <tr>
+            <td>Nomor Akta Nikah</td>
+            <td id="res-no-akta">0012/AK/2023</td>
+          </tr>
+          <tr>
+            <td>Status Terdaftar</td>
+            <td><span class="badge-status"><i class="fa-solid fa-check-double"></i> Terdaftar / Valid</span></td>
+          </tr>
+        </table>
+
+        <div style="margin-top: 25px; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 20px;">
+          <h4 style="margin-bottom: 10px; font-size: 0.95rem;">Preview Dokumen Arsip</h4>
+          <button class="btn" onclick="openPdfModal()"><i class="fa-solid fa-file-pdf"></i> Lihat Dokumen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Halaman Admin Login -->
+    <section id="login-page" class="page">
+      <div class="card" style="max-width: 400px; text-align: center;">
+        <img id="login-logo" src="https://lh3.googleusercontent.com/d/11z9mckC4eI98BgkHzZJFFbWECL5rk7-D" style="height: 60px; margin-bottom: 10px; object-fit: contain;" alt="Logo">
+        <h2 style="color: var(--primary-color);">Panel Admin</h2>
+        <p class="card-subtitle">Silakan login untuk mengakses panel administrator</p>
+
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group" style="text-align: left;">
+            <label>Username</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-user"></i>
+              <input type="text" class="form-control" placeholder="Masukkan username" required value="admin">
+            </div>
+          </div>
+          <div class="form-group" style="text-align: left;">
+            <label>Password</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" class="form-control" placeholder="Masukkan password" required value="admin">
+            </div>
+          </div>
+          <button type="submit" class="btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 5. Admin Panel -->
+    <section id="admin-panel" class="page">
+      <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <ul class="sidebar-menu">
+            <li><button class="sidebar-btn active" id="adm-menu-dash" onclick="showAdminTab('dash')"><i class="fa-solid fa-chart-line"></i> Dashboard</button></li>
+            <li><button class="sidebar-btn" id="adm-menu-qr" onclick="showAdminTab('qr')"><i class="fa-solid fa-qrcode"></i> Generator QR</button></li>
+            <li><button class="sidebar-btn" id="adm-menu-theme" onclick="showAdminTab('theme')"><i class="fa-solid fa-palette"></i> Pengaturan Tema</button></li>
+            <li style="margin-top: 20px; border-top: 1px solid rgba(0,0,0,0.08); padding-top: 10px;">
+              <button class="sidebar-btn" style="color: #d32f2f;" onclick="showPage('landing-page')"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Admin Content Area -->
+        <div class="admin-content">
+          
+          <!-- Tab 1: Dashboard -->
+          <div id="adm-tab-dash" class="admin-tab">
+            <h2 style="margin-bottom: 20px; color: var(--primary-color);">Dashboard Overview</h2>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                <div>
+                  <div style="font-size: 1.4rem; font-weight: 700;">1.248</div>
+                  <div style="font-size: 0.8rem; opacity: 0.8;">Total Data Pernikahan</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <div>
+                  <div style="font-size: 1.4rem; font-weight: 700;">17</div>
+                  <div style="font-size: 0.8rem; opacity: 0.8;">Total Desa Terdaftar</div>
+                </div>
+              </div>
+            </div>
+            <p style="opacity: 0.8; font-size: 0.9rem;">Selamat datang di Panel Kontrol Administrator KUASIP. Gunakan menu di sebelah kiri untuk mengelola tema, banner, dan membuat QR Code link.</p>
+          </div>
+
+          <!-- Tab 2: Generator QR Code (PERBAIKAN: Hanya Desa / Website) -->
+          <div id="adm-tab-qr" class="admin-tab" style="display: none;">
+            <h2 style="margin-bottom: 10px; color: var(--primary-color);">Generator QR Code</h2>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">Buat QR Code yang langsung mengarah ke website/halaman pencarian desa.</p>
+
+            <form onsubmit="generateQRCode(event)">
+              <div class="form-group">
+                <label>Pilih Tujuan QR Code (Desa / Website Utama)</label>
+                <select id="qr-desa" class="form-control" style="padding-left: 15px;">
+                  <option value="Semua">Semua / Langsung ke Website Utama</option>
+                  <option value="Balahu">Desa Balahu</option>
+                  <option value="Botumoputi">Desa Botumoputi</option>
+                  <option value="Buhu">Desa Buhu</option>
+                  <option value="Datahu">Desa Datahu</option>
+                  <option value="Dunggala">Desa Dunggala</option>
+                  <option value="Ilomata">Desa Ilomata</option>
+                  <option value="Iloponu">Desa Iloponu</option>
+                  <option value="Isimu Raya">Desa Isimu Raya</option>
+                  <option value="Isimu Selatan">Desa Isimu Selatan</option>
+                  <option value="Isimu Utara">Desa Isimu Utara</option>
+                  <option value="Labanu">Desa Labanu</option>
+                  <option value="Molowahu">Desa Molowahu</option>
+                  <option value="Motilango">Desa Motilango</option>
+                  <option value="Reksonegoro">Desa Reksonegoro</option>
+                  <option value="Tolotio">Desa Tolotio</option>
+                  <option value="Ulobua">Desa Ulobua</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn"><i class="fa-solid fa-qrcode"></i> Generate QR Code</button>
+            </form>
+
+            <div id="qr-result-box" class="qr-preview-box" style="display: none;">
+              <h4 style="margin-bottom: 10px; color: var(--primary-color);">Hasil QR Code</h4>
+              <img id="qr-img" src="" alt="QR Code Result" style="width: 180px; height: 180px; border-radius: 8px;">
+              <div style="margin-top: 12px;">
+                <input type="text" id="qr-url-text" class="form-control" style="padding-left: 10px; font-size: 0.8rem; text-align: center;" readonly>
+              </div>
+              <button class="btn btn-secondary" onclick="copyQRLink()" style="margin-top: 10px; font-size: 0.85rem;">
+                <i class="fa-solid fa-copy"></i> Salin Link QR
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab 3: Pengaturan Tema & Media (PERBAIKAN: Seluruh Warna & LocalStorage) -->
+          <div id="adm-tab-theme" class="admin-tab" style="display: none;">
+            <h2 style="margin-bottom: 10px; color: var(--primary-color);">Pengaturan Tema & Media</h2>
+            <p style="font-size: 0.85rem; opacity: 0.8; margin-bottom: 20px;">Ubah nama instansi, logo, gambar banner, serta seluruh skema warna aplikasi secara penuh.</p>
+
+            <form onsubmit="saveThemeSettings(event)">
+              <div class="form-group">
+                <label>Nama KUA / Instansi</label>
+                <input type="text" id="theme-kua-name" class="form-control" style="padding-left: 15px;" required>
+              </div>
+
+              <div class="form-group">
+                <label>URL Logo KUA</label>
+                <input type="url" id="theme-logo-url" class="form-control" style="padding-left: 15px;" oninput="previewLogoInput(this.value)" required>
+                <img id="theme-logo-preview" class="img-preview" src="" alt="Preview Logo">
+              </div>
+
+              <div class="form-group">
+                <label>URL Gambar Banner Landing Page</label>
+                <input type="url" id="theme-banner-url" class="form-control" style="padding-left: 15px;" oninput="previewBannerInput(this.value)" required>
+                <img id="theme-banner-preview" class="img-preview" src="" alt="Preview Banner" style="width: 100%; object-fit: cover;">
+              </div>
+
+              <!-- Pengaturan Seluruh Warna -->
+              <div class="form-group">
+                <label style="margin-bottom: 12px; font-size: 1rem; color: var(--primary-color);">Skema Warna Lengkap Aplikasi</label>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                  <div>
+                    <label style="font-size: 0.85rem;">Warna Utama (Primary)</label>
+                    <div class="color-picker-group">
+                      <input type="color" id="theme-color-primary" oninput="document.getElementById('primary-val').textContent = this.value">
+                      <span id="primary-val">#2E7D32</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style="font-size: 0.85rem;">Warna Aksen / Highlight</label>
+                    <div class="color-picker-group">
+                      <input type="color" id="theme-color-accent" oninput="document.getElementById('accent-val').textContent = this.value">
+                      <span id="accent-val">#E8F5E9</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style="font-size: 0.85rem;">Warna Background Halaman</label>
+                    <div class="color-picker-group">
+                      <input type="color" id="theme-color-bg" oninput="document.getElementById('bg-val').textContent = this.value">
+                      <span id="bg-val">#F4F6F8</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style="font-size: 0.85rem;">Warna Kartu / Card (Kotak)</label>
+                    <div class="color-picker-group">
+                      <input type="color" id="theme-color-card" oninput="document.getElementById('card-val').textContent = this.value">
+                      <span id="card-val">#FFFFFF</span>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style="font-size: 0.85rem;">Warna Teks / Tulisan</label>
+                    <div class="color-picker-group">
+                      <input type="color" id="theme-color-text" oninput="document.getElementById('text-val').textContent = this.value">
+                      <span id="text-val">#333333</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn" style="margin-top: 10px;"><i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan Tema</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Pilihan Hasil Pencarian -->
+  <div id="search-result-modal" class="modal">
+    <div class="modal-content" style="max-width: 560px; height: auto; max-height: 80vh;">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-color); font-size: 1rem;"><i class="fa-solid fa-magnifying-glass"></i> Pilih Data Arsip</h3>
+        <button onclick="document.getElementById('search-result-modal').classList.remove('active')" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-color);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body" style="display: block; overflow-y: auto; background: #f7f7f7; padding: 10px;">
+        <p id="search-result-title" style="margin: 0 0 12px; font-size: 0.8rem; color: var(--text-color); font-weight: 600;"></p>
+        <div id="search-result-list" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04);"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal PDF Viewer (Protected) -->
+  <div id="pdf-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 style="color: var(--primary-color); font-size: 1rem;"><i class="fa-solid fa-shield-halved"></i> Preview Dokumen Sah</h3>
+        <button onclick="closePdfModal()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-color);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="pdf-preview-canvas">
+          <div class="watermark-overlay">
+            <div class="watermark-text">
+              ARSIP RESMI KUA<br>
+              HANYA UNTUK PRATINJAU<br>
+              DILINDUNGI SISTEM
+            </div>
+          </div>
+
+          <div style="text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 15px;">
+            <img id="modal-doc-logo" src="https://lh3.googleusercontent.com/d/11z9mckC4eI98BgkHzZJFFbWECL5rk7-D" style="height: 45px; margin-bottom: 5px; object-fit: contain;" alt="Logo">
+            <h4 style="font-size: 0.85rem; font-weight: 800;">KEMENTERIAN AGAMA REPUBLIK INDONESIA</h4>
+            <h5 style="font-size: 0.75rem; color: #555;">KANTOR URUSAN AGAMA KECAMATAN TIBAWA</h5>
+            <p style="font-size: 0.65rem; color: #777;">AKTA NIKAH - PETIKAN ARSIP</p>
+          </div>
+
+          <div style="font-size: 0.75rem; line-height: 1.6;">
+            <p style="text-align: center; font-weight: bold; margin-bottom: 10px;">AKTA NIKAH: No. 0012/AK/2023</p>
+            <p>Telah terdaftar pernikahan antara:</p>
+            <br>
+            <p><strong>Suami:</strong> Ahmad Syafii</p>
+            <p><strong>Istri:</strong> Siti Nurhaliza</p>
+            <p><strong>Desa:</strong> Isimu Raya</p>
+            <p><strong>Kecamatan:</strong> Tibawa</p>
+            <p><strong>Tanggal Akad:</strong> 12 Januari 2023</p>
+            <br>
+            <p style="font-size: 0.65rem; color: #666; font-style: italic; margin-top: 20px;">
+              Dokumen ini dikeluarkan oleh sistem KUASIP secara elektronik dan sah sebagai arsip verifikasi data KUA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <i class="fa-solid fa-lock" style="color: var(--primary-color);"></i> Dokumen ini hanya untuk pratinjau. Fitur unduh dan salin dimatikan untuk keamanan data.
+      </div>
+    </div>
+  </div>
+     <!-- GAS_URL = "https://script.google.com/macros/s/AKfycbyUkgxEUrJt-TVRoVfro2012ZRDOrKpAAgTY_w8rNlet06Ne5UiZuh5BAqZaqADRsTs/exec" --> 
+  <script src="js/app.js" defer></script>
+</body>
+</html>
