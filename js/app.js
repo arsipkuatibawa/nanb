@@ -297,7 +297,7 @@
     e.preventDefault();
     const desa = document.getElementById('qr-desa').value;
     
-    let baseUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+    let baseUrl = window.location.protocol + "https://arsipkuatibawa.github.io/nanb/" + window.location.host + window.location.pathname;
     if (desa !== 'Semua') {
       baseUrl += '?desa=' + encodeURIComponent(desa);
     }
